@@ -7,7 +7,7 @@ namespace qwerty
         {
             string[,] namesAndRangsOfSoldiers = new string[2, 21];
             int numberOfSoldierToGetRang;
-            bool isPlaceEmpty;
+            bool isPlaceTaken;
             Console.WriteLine($"Вводите постепенно фамилии солдат в взводе ({namesAndRangsOfSoldiers.GetLength(1)}шт.)");
 
             for (int i = 0; i < namesAndRangsOfSoldiers.GetLength(1); i++)
@@ -41,9 +41,9 @@ namespace qwerty
             {
                 Console.WriteLine($"\n{i + 1} командир");
                 numberOfSoldierToGetRang = int.Parse(Console.ReadLine());
-                isPlaceEmpty = false;
+                isPlaceTaken = true;
 
-                while (!isPlaceEmpty)
+                while (isPlaceTaken)
                 {
                     for (int j = 0; j < namesAndRangsOfSoldiers.GetLength(1); j++)
                     {
@@ -55,7 +55,7 @@ namespace qwerty
                         }
                         else if (j == numberOfSoldierToGetRang - 1)
                         { 
-                            isPlaceEmpty = true;
+                            isPlaceTaken = false;
                             break;
                         }
                     }
