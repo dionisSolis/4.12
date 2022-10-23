@@ -5,12 +5,8 @@ namespace qwerty
     {
         static void Main(string[] args)
         {
-            string[,] namesAndRangsOfSoldiers = 
-            {
-                {"","","","","","","","","","","","","","","","","","","","", ""},
-                {"","","","","","","","","","","","","","","","","","","","", ""},
-            };
-            List<int> numbersOfRangSoldiers = new List<int>();
+            string[,] namesAndRangsOfSoldiers = new string[2, 21];
+            int[] numbersOfRangSoldiers = new int[5];
             int numberOfSoldierToGetRang;
             bool isPlaceEmpty;
 
@@ -33,7 +29,7 @@ namespace qwerty
             {
                 for (int j = 0; j < namesAndRangsOfSoldiers.GetLength(1); j++)
                 {
-                    Console.WriteLine($"{j+1}) {namesAndRangsOfSoldiers[i, j]} - {namesAndRangsOfSoldiers[1, j]}");
+                    Console.WriteLine($"{j + 1}) {namesAndRangsOfSoldiers[i, j]} - {namesAndRangsOfSoldiers[1, j]}");
                 }
             }
 
@@ -46,7 +42,7 @@ namespace qwerty
                 numberOfSoldierToGetRang = int.Parse(Console.ReadLine());
             }
 
-            numbersOfRangSoldiers.Add(numberOfSoldierToGetRang);
+            numbersOfRangSoldiers[0] = numberOfSoldierToGetRang;
             namesAndRangsOfSoldiers[1, (numbersOfRangSoldiers[0] - 1)] = "Старшина";
             Console.WriteLine("\nВведите 4 номера желаемых командиров:");
 
@@ -69,16 +65,16 @@ namespace qwerty
                         }
                         else if (j == numbersOfRangSoldiers.Count() - 1)
                         {
-                            numbersOfRangSoldiers.Add(numberOfSoldierToGetRang);
+                            numbersOfRangSoldiers[i + 1] = numberOfSoldierToGetRang;
                             isPlaceEmpty = true;
                             break;
                         }
                     }
                 }
 
-                namesAndRangsOfSoldiers[1, numbersOfRangSoldiers[i+1] - 1] = "Командир";
+                namesAndRangsOfSoldiers[1, numbersOfRangSoldiers[i + 1] - 1] = "Командир";
             }
-            
+
 
             Console.Clear();
             Console.WriteLine("Ваш взвод");
