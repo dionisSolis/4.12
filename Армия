@@ -6,7 +6,6 @@ namespace qwerty
         static void Main(string[] args)
         {
             string[,] namesAndRangsOfSoldiers = new string[2, 21];
-            int[] numbersOfRangSoldiers = new int[5];
             int numberOfSoldierToGetRang;
             bool isPlaceEmpty;
             Console.WriteLine($"Вводите постепенно фамилии солдат в взводе ({namesAndRangsOfSoldiers.GetLength(1)}шт.)");
@@ -35,11 +34,10 @@ namespace qwerty
                 numberOfSoldierToGetRang = int.Parse(Console.ReadLine());
             }
 
-            numbersOfRangSoldiers[0] = numberOfSoldierToGetRang;
-            namesAndRangsOfSoldiers[1, (numbersOfRangSoldiers[0] - 1)] = "Старшина";
+            namesAndRangsOfSoldiers[1, numberOfSoldierToGetRang - 1] = "Старшина";
             Console.WriteLine("\nВведите 4 номера желаемых командиров:");
 
-            for (int i = 0; i < numbersOfRangSoldiers.GetLength(0) - 1; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Console.WriteLine($"\n{i + 1} командир");
                 numberOfSoldierToGetRang = int.Parse(Console.ReadLine());
@@ -47,24 +45,23 @@ namespace qwerty
 
                 while (isPlaceEmpty == false)
                 {
-                    for (int j = 0; j < numbersOfRangSoldiers.GetLength(0); j++)
+                    for (int j = 0; j < namesAndRangsOfSoldiers.GetLength(1); j++)
                     {
-                        if (numberOfSoldierToGetRang == numbersOfRangSoldiers[j] || numberOfSoldierToGetRang > namesAndRangsOfSoldiers.GetLength(1) || numberOfSoldierToGetRang < 1)
+                        if (numberOfSoldierToGetRang > namesAndRangsOfSoldiers.GetLength(1) || numberOfSoldierToGetRang < 1 || "Рабочий" != namesAndRangsOfSoldiers[1, numberOfSoldierToGetRang - 1])
                         {
                             Console.WriteLine("Это место занято или не существует, выберите другое: ");
                             numberOfSoldierToGetRang = int.Parse(Console.ReadLine());
                             break;
                         }
-                        else if (j == numbersOfRangSoldiers.GetLength(0) - 1)
-                        {
-                            numbersOfRangSoldiers[i + 1] = numberOfSoldierToGetRang;
+                        else if (j == numberOfSoldierToGetRang - 1)
+                        { 
                             isPlaceEmpty = true;
                             break;
                         }
                     }
                 }
 
-                namesAndRangsOfSoldiers[1, numbersOfRangSoldiers[i + 1] - 1] = "Командир";
+                namesAndRangsOfSoldiers[1, numberOfSoldierToGetRang - 1] = "Командир";
             }
 
             Console.Clear();
