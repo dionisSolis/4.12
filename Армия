@@ -43,7 +43,7 @@ namespace qwerty
                 numberOfSoldierToGetRang = int.Parse(Console.ReadLine());
                 isPlaceEmpty = false;
 
-                while (isPlaceEmpty == false)
+                while (!isPlaceEmpty)
                 {
                     for (int j = 0; j < namesAndRangsOfSoldiers.GetLength(1); j++)
                     {
